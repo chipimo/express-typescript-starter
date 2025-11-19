@@ -17,6 +17,7 @@ import { routingControllersToSpec } from 'routing-controllers-openapi';
 import * as swaggerUiExpress from 'swagger-ui-express';
 import { buildSchema } from 'type-graphql';
 import bodyParser from 'body-parser';
+import { dbConfig } from '@base/config/db';
 
 export class App {
   private app: express.Application = express();
@@ -50,7 +51,7 @@ export class App {
 
   private async typeOrmCreateConnection() {
     try {
-      await createConnection();
+      await createConnection(dbConfig);
     } catch (error) {
       console.log('Caught! Cannot connect to database: ', error);
     }
